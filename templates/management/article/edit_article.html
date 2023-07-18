@@ -1,0 +1,368 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编辑文章</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet"> -->
+    <link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
+    <link href="{% static 'tags-input/jquery.tagsinput.min.css' %}" rel="stylesheet">
+    <link href="{% static 'tags-input/jquery-ui.min.css' %}" rel="stylesheet">
+    <link href="{% static 'semantic.min.css' %}" type="text/css" rel="stylesheet">
+    <style>
+        .ui-autocomplete {
+            position: absolute;
+            z-index: 100000;
+            cursor: default;
+            padding: 0;
+            margin-top: 2px;
+            list-style: none;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .ui-autocomplete > li {
+            padding: 3px 20px;
+        }
+
+        .ui-autocomplete > li.ui-state-focus {
+            background-color: #DDD;
+        }
+
+        .ui-helper-hidden-accessible {
+            display: none;
+        }
+
+        html,
+        body {
+            background-color: #fff;
+            height: 100%;
+            overflow: hidden;
+            color: #333;
+        }
+
+        #top-container {
+            border-bottom: 1px solid #e8e8e8;
+            padding-left: 30px;
+        }
+
+        #editor-toolbar {
+            width: 1350px;
+            background-color: #FCFCFC;
+            margin: 0 auto;
+        }
+
+        #content {
+            height: calc(100% - 40px);
+            background-color: rgb(245, 245, 245);
+            overflow-y: auto;
+            position: relative;
+        }
+
+        #editor-container {
+            width: 850px;
+            margin: 30px auto 150px auto;
+            background-color: #fff;
+            padding: 20px 50px 50px 50px;
+            border: 1px solid #e8e8e8;
+            box-shadow: 0 2px 10px rgb(0 0 0 / 12%);
+        }
+
+        #title-container {
+            padding: 20px 0;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        #title-container input {
+            font-size: 30px;
+            border: 0;
+            outline: none;
+            width: 100%;
+            line-height: 1;
+        }
+
+        #editor-text-area {
+            min-height: 900px;
+            margin-top: 20px;
+        }
+
+        #tags_tag {
+            border: 0;
+            padding: 6px;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<div id="top-container" style="padding-left: 6px;">
+    <p style="text-align:right;padding: 2px;">
+        <textarea hidden="hidden" id="html_text">{{ article.html_text }}</textarea>
+        <a class="ui button secondary mini" href="/management/article"><i class="angle left icon"></i>返回</a>
+        <a class="ui button primary mini" onclick="submit(-1)"><i class="send icon"></i>发布更新</a>
+    </p>
+</div>
+<div style="border-bottom: 1px solid #e8e8e8;">
+    <div id="editor-toolbar"></div>
+</div>
+<div id="content">
+    <div id="editor-container">
+        <div id="title-container">
+            <input id="page_title" value="{{ article.title }}" placeholder="标题">
+        </div>
+        <div id="editor-text-area"></div>
+    </div>
+</div>
+
+<div class="ui longer modal">
+    <div class="header">
+        额外信息
+    </div>
+    <div class="scrolling content">
+        <div class="description">
+            <form id="article_form" class="ui form">
+                {% csrf_token %}
+                <div class="field">
+                    <label>标题</label>
+                    <div class="field">
+                        <input readonly value="{{ article.title }}" type="text" id="title" name="title"
+                               placeholder="标题">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>摘要</label>
+                    <textarea type="text" name="intro"
+                              placeholder="摘要">{{ article.intro }}</textarea>
+                </div>
+                <div class="field">
+                    <div class="fields">
+                        <div class="field">
+                            <label>栏目</label>
+                            <select name="category" class="ui dropdown">
+                                {% for item in category %}
+                                    {% if item.id == article.category %}
+                                        <option selected value="{{ item.id }}">{{ item.name }}</option>
+                                    {% else %}
+                                        <option value="{{ item.id }}">{{ item.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>置顶</label>
+                            <select name="is_top" class="ui  dropdown">
+                                {% if 1 == article.is_top %}
+                                    <option selected value="1">YES</option>
+                                    <option value="0">NO</option>
+                                {% else %}
+                                    <option value="1">YES</option>
+                                    <option selected value="0">NO</option>
+                                {% endif %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>标签</label>
+                    <div class="fields">
+                        <div class="sixteen wide field">
+                            <input name="tags" id="tags" value="{{ tags }}"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="actions">
+        <div onclick="submit(1)" class="ui primary approve button">
+            发布
+        </div>
+    </div>
+</div>
+
+<!-- 显示内容 -->
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'semantic.js' %}"></script>
+<script src="{% static 'tags-input/jquery-ui.min.js' %}"></script>
+<script src="{% static 'tags-input/jquery.tagsinput.min.js' %}"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/@wangeditor/editor@latest/dist/index.min.js' %}"></script> -->
+<script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js' %}"></script>
+<script>
+    const E = window.wangEditor
+
+    // 切换语言
+    const LANG = location.href.indexOf('lang=en') > 0 ? 'en' : 'zh-CN'
+    E.i18nChangeLanguage(LANG)
+
+    const editorConfig = {
+        placeholder: 'Type here...',
+        scroll: false, // 禁止编辑器滚动
+        MENU_CONF: {
+            uploadImage: {
+                server: '/management/files/upload',
+                // form-data fieldName ，默认值 'wangeditor-uploaded-image'
+                fieldName: 'file',
+
+                // 单个文件的最大体积限制，默认为 2M
+                maxFileSize: 2 * 1024 * 1024, // 1M
+
+                // 最多可上传几个文件，默认为 100
+                maxNumberOfFiles: 10,
+
+                // 选择文件时的类型限制，默认为 ['image/*'] 。如不想限制，则设置为 []
+                allowedFileTypes: ['image/*'],
+
+                // 自定义上传参数，例如传递验证的 token 等。参数会被添加到 formData 中，一起上传到服务端。
+                meta: {
+                    csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val()
+                },
+
+                // 将 meta 拼接到 url 参数中，默认 false
+                metaWithUrl: false,
+
+                // 自定义增加 http  header
+
+                // 跨域是否传递 cookie ，默认为 false
+                withCredentials: true,
+
+                // 超时时间，默认为 10 秒
+                timeout: 5 * 1000, // 5 秒
+            }
+        },
+        onChange(editor) {
+            const html = editor.getHtml()
+            $('#title').val($('#page_title').val())
+        }
+    }
+
+    // 先创建 editor
+    const editor = E.createEditor({
+        selector: '#editor-text-area',
+        content: [],
+        config: editorConfig
+    })
+
+    // 创建 toolbar
+    const toolbar = E.createToolbar({
+        editor,
+        selector: '#editor-toolbar',
+        config: {
+            excludeKeys: 'fullScreen',
+        }
+    })
+
+    setTimeout(function () {
+        editor.dangerouslyInsertHtml($('#html_text').val())
+    }, 200)
+
+</script>
+<script>
+    function submit(flag) {
+        $(".ui.form").form({
+            fields: {
+                title: {
+                    identifier: "title",
+                    rules: [
+                        {
+                            type: "empty",
+                            prompt: "请输入标题"
+                        }
+                    ]
+                },
+                intro: {
+                    identifier: "intro",
+                    rules: [
+                        {
+                            type: "empty",
+                            prompt: "请输入摘要"
+                        }
+                    ]
+                }
+            },
+            inline: true,
+            on: "blur"
+        });
+        $('#title').val($('#page_title').val())
+        if (flag === -1) {
+            $('.ui.longer.modal')
+                .modal('show')
+        } else {
+            let isPass = true
+            var data = $('#article_form').serializeArray();
+            data.forEach((item, i) => {
+                if (item.value === '') {
+                    isPass = false
+                }
+            })
+            if (isPass) {
+                let formData = new FormData()
+                data.forEach((item, i) => {
+                    formData.append(item.name, item.value)
+                })
+                formData.append('html', editor.getHtml())
+                formData.append('markdown', editor.getText())
+                formData.append('type', 1)
+                formData.append('tags', $('#tags').val())
+                formData.append('status', flag)
+                formData.append('pk', {{article.id}})
+                $.ajax('/management/article/edit_article', {
+                    method: 'post',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        window.location.href = '/management/article'
+                    },
+                    error: function (err) {
+                    }
+                })
+            } else {
+                alert('请检查表单')
+            }
+        }
+    }
+
+    $('#tags').tagsInput({
+        'autocomplete_url': '/management/tags/search',
+        'autocomplete': {selectFirst: true, width: '100px', autoFill: true},
+        'height': '100px',
+        'width': '100%',
+        'interactive': true,
+        'defaultText': '添加标签',
+        'delimiter': [','],   // Or a string with a single delimiter. Ex: ';'
+        'removeWithBackspace': true,
+        'minChars': 0,
+        'maxChars': 0, // if not provided there is no limit
+        'placeholderColor': '#666666',
+    });
+    $(".ui.toggle.button").click(function () {
+        $(".mobile.only.grid .ui.vertical.menu").toggle(100);
+    });
+
+    $(".ui.dropdown").dropdown();
+
+    function generateIntro() {
+        let text = editor.getText()
+        if (text.length > 20) {
+            $("textarea[name='intro']").val(text.substring(0, 20) + '...')
+        } else {
+            $("textarea[name='intro']").val(text + '...')
+        }
+    }
+</script>
+</body>
+
+</html>

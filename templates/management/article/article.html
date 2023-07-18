@@ -1,0 +1,104 @@
+{% extends 'management/_common/base.html' %}
+{% load page_tag %}
+
+{% block content %}
+    <form style="padding: 0;" action="/management/article" method="get">
+        <div style="padding: 0" class="ui input">
+            <input name="search_title" type="text" style="margin-right: 5px" placeholder="标题">
+            <input name='search_content' type="text" style="margin-right: 5px" placeholder="内容">
+            <button type="submit" class="ui button primary"><i class="search icon"></i>搜索</button>
+            <a href="/management/article" type="reset" class="ui button secondary"><i class="refresh icon"></i>重置</a>
+        </div>
+    </form>
+
+    <table style="padding: 0" class="ui celled table">
+        <thead>
+        <tr>
+            <th>封面</th>
+            <th>标题</th>
+            <th>分类</th>
+            <th>创建时间</th>
+            <th>置顶</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.cover__file_net_path }}</td>
+                <td><a href="/management/article/to_edit/{{ article.id }}">{{ article.title }}</a></td>
+                <td>{{ article.category__name }}</td>
+                <td>{{ article.created_time }}</td>
+                <td>{{ article.is_top }}</td>
+                <td>{% if article.status == 1 %}
+                    <strong style="color: green">发布</strong>
+                {% elif article.status == 0 %}
+                    <strong style="color: orange">草稿</strong>
+                {% endif %} </td>
+                <td><a onclick="deleteConfirm({{ article.id }})" href="#" class="button" style="color: red">删除</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th colspan="7">
+                <div class="ui right floated pagination menu">
+                    {% if articles.number > 1 %}
+                        <a href="?page={{ articles.number|add:-1 }}" class="icon item">
+                            <i class="left chevron icon"></i>
+                        </a>
+                    {% else %}
+                        <a class="icon item">
+                            <i class="left chevron icon"></i>
+                        </a>
+                    {% endif %}
+
+                    {% for page in articles.paginator.page_range %}
+                        {% circle_page articles.number page %}
+                    {% endfor %}
+                    {% if articles.number <  articles.paginator.num_pages %}
+
+                        <a href="?page={{ articles.number | add:1 }}" class="icon item">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    {% else %}
+                        <a class="icon item">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    {% endif %}
+
+                </div>
+            </th>
+        </tr>
+        </tfoot>
+    </table>
+    <div class="ui mini test modal">
+        <div class="header">
+            警告
+        </div>
+        <div class="content">
+            <p>确认删除该文章？</p>
+        </div>
+        <div class="actions">
+            <div class="ui negative button">
+                取消
+            </div>
+            <a id="deleteBtn" href="" class="ui positive right labeled icon button">
+                确认
+                <i class="checkmark icon"></i>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script>
+        function deleteConfirm(id) {
+            $('.mini.modal')
+                .modal('show')
+            $("#deleteBtn").attr('href', '/management/article/delete_article?id=' + id)
+        }
+    </script>
+{% endblock %}

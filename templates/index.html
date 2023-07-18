@@ -1,0 +1,650 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>首页-众益鑫公社</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'public/img/favicon.png' %}">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'public/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/bootstrap-datepicker.min.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/odometer.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/responsive.css' %}">
+</head>
+<body>
+
+<!-- preloader
+<div id="preloader">
+    <div id="loading-center">
+        <div class="loader loader-two">
+            <div class="loader-outter"></div>
+            <div class="loader-inner"></div>
+        </div>
+    </div>
+</div>
+ preloader-end -->
+
+<!-- Scroll-top -->
+<button class="scroll-top scroll-to-target" data-target="html">
+    <i class="fa-solid fa-angles-up"></i>
+</button>
+<!-- Scroll-top-end-->
+
+<!-- header-area -->
+<header class="transparent-header header-style-two">
+    <div id="sticky-header" class="main-header menu-area">
+        <div class="container custom-container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="mobile-nav-toggler"><i class="fa-solid fa-bars"></i></div>
+                    <div class="menu-wrap">
+                        <nav class="menu-nav show">
+                            <div class="logo">
+                                <a href="/"><img src="{% static 'public/img/logo/logo_02.png' %}" alt="Logo"></a>
+                            </div>
+                            <div class="navbar-wrap main-menu d-none d-lg-flex">
+                                <ul class="navigation">
+                                    <li class="active dropdown"><a href="/">众益鑫公社</a>
+                                        <ul class="submenu">
+                                            <li><a href="/index/fuli">社员要求与福利</a></li>
+                                            <li><a href="/index/about">公社介绍</a></li>
+                                            <li><a href="/category/成功案例?page=1">成功案例</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="/category/社会服务?page=1">社会服务</a></li>
+                                    <li class="dropdown"><a href="/index/about#hezuo">合作伙伴</a></li>
+                                    <li class="dropdown"><a href="/category/众益鑫公告?page=1">众益鑫公告栏</a></li>
+                                    <li class="dropdown"><a href="/category/爱心传递?page=1">爱心传递</a></li>
+                                </ul>
+                            </div>
+                            <div class="header-action">
+                                <ul>
+                                      {% if is_nlogin %}
+                                        <li id='zhuangtai'><a href="/index/vip" class="btn btn-style-two">会员中心</a></li>
+                                    {% else %}
+                                        <li id='zhuangtai'><a href="/index/login" class="btn btn-style-two">登录 /
+                                            注册</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <!-- Mobile Menu  -->
+                    <div class="mobile-menu">
+                        <div class="menu-backdrop"></div>
+                        <div class="close-btn"><i class="far fa-times"></i></div>
+
+                        <nav class="menu-box">
+                            <div class="nav-logo">
+                                <a href="/"></a>
+                            </div>
+                            <div class="menu-outer">
+                                <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                            </div>
+                            <ul class="navigation">
+                              {% if is_nlogin %}
+                                        <li id='zhuangtai'><a href="/index/vip" class="btn btn-style-two">会员中心</a></li>
+                                    {% else %}
+                                        <li id='zhuangtai'><a href="/index/login" class="btn btn-style-two">登录 /
+                                            注册</a></li>
+                                    {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- End Mobile Menu -->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header-area-end -->
+
+<!-- main-area -->
+<main>
+
+    <!-- banner-area -->
+    <section class="banner-area">
+        <div class="banner-shape"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 order-0 order-lg-2">
+                    <div class="banner-img-wrap">
+                        <img src="{% static 'public/img/banner_img01.jpg' %}" alt=""
+                             class="img-one wow zoomIn" data-wow-delay=".2s">
+
+                        <!--video src="/static/img/qy.mp4"loop="loop" controls="controls"  style="width: 100%" data-wow-delay=".2s"></video-->
+                        <!--<img src="{% static 'public/img/banner_img02.jpg' %}"> alt="" class="img-two wow fadeInRight" data-wow-delay=".4s">-->
+                        <!--<div class="progress-wrap wow fadeInUp" data-wow-delay=".6s">-->
+                        <!--    <div class="chart" data-percent="65">-->
+                        <!--        <span class="percentage">65<strong>%</strong></span>-->
+                        <!--    </div>-->
+                        <!--    <p>世界生活贫困的人数</p>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="banner-content">
+                        <h2 class="title wow fadeInUp" data-wow-delay=".4s">成为众益鑫公社成员</h2>
+                        <span class="wow fadeInUp" data-wow-delay=".2s"
+                              style="padding: 0px 0 50px 0;">加入众益鑫公社尽我所能，服务社会</span>
+                        <a href="javascript:void(0);" class="btn btn-style-two wow fadeInUp" data-wow-delay=".8s">会员总人数：247803人</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner-area-end -->
+
+    <!-- about-area -->
+    <section class="about-area mb-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <div class="section-title text-center mb-50">
+                        <span class="sub-title" style="font-weight: normal;">- ABOUT US -</span>
+                        <h2 class="title">关于众益鑫</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center justify-content-center">
+                <div class="col-xl-6 col-lg-8">
+                    <div class="about-img wow fadeInRight" data-wow-delay=".2s">
+                        <img src="{% static 'public/img/images/about_img.jpg' %}" alt="">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-8">
+                    <div class="about-tab-wrap wow fadeInLeft" data-wow-delay=".2s">
+                        <p style="text-indent: 2em;">
+                            众益鑫公社成立于2008年11月6日，是以深耕社会服务、互联网金融理财为方针，并以人民服务为信仰的社会服务事业组织。公社总部位于中国台湾省台北市，成员约十余万人，其中以华人居多。
+                        </p>
+                        <p style="text-indent: 2em;">
+                            从成立之初到现在，在创始人李鸣先生的带领下，用心做社会服务，充分发挥团队互联网金融优势，把希望传递给贫困人群，向所有困难人群伸出援手，并通过了解穷困人群的物资和心灵需求来给予帮助，用爱心的手托起充满希望的明天。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- about-area-end -->
+    <!-- features-area -->
+    <section class="features-area-two pt-20 pb-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <div class="section-title text-center mb-50">
+                        <span class="sub-title" style="font-weight: normal;">- COMMUNITY SERVICE -</span>
+                        <h2 class="title">社会服务</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-0 justify-content-center">
+                <div class="col-lg-3 col-sm-6">
+                    <a href="/index/articledetails?id=296" style="display: block;" class="features-item-two">
+                        <div class="features-content">
+                            <h2 class="title">众益鑫惠州团队走访慰问老红军</h2>
+                            <p>众益鑫惠州团队走访慰问老红军</p>
+                        </div>
+                        <div class="features-icon">
+                            <i class="fal fa-box-heart"></i>
+                        </div>
+                        <div class="features-overlay-text">
+                            <h2 class="title">01</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <a href="/index/articledetails?id=290" style="display: block" class="features-item-two">
+                        <div class="features-content">
+                            <h2 class="title">众益鑫新零售超市河北廊坊店隆重开业</h2>
+                            <p>我们的每一天都是新的开始，在第一缕阳光照进你窗户的时候，意味着你要准备一天的工作了。</p>
+                        </div>
+                        <div class="features-icon">
+                            <i class="fal fa-parachute-box"></i>
+                        </div>
+                        <div class="features-overlay-text">
+                            <h2 class="title">02</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <a href="/index/articledetails?id=286" style="display: block;" class="features-item-two">
+                        <div class="features-content">
+                            <h2 class="title">众益鑫新零售超市河南开封店隆重开业</h2>
+                            <p>
+                                一个人能否成功，固然要靠天才，要靠努力，但善于创造时机，及时把握时机，不因循、不观望、不退缩、不犹豫，想到就做，有尝试的勇气，有实践的决心，众多因素加起来，就可以造就一个人的成功。</p>
+                        </div>
+                        <div class="features-icon">
+                            <i class="fal fa-hand-holding-water"></i>
+                        </div>
+                        <div class="features-overlay-text">
+                            <h2 class="title">03</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <a href="/index/articledetails?id=281" style="display: block;" class="features-item-two">
+                        <div class="features-content">
+                            <h2 class="title">众益鑫新零售超市湖北武汉店隆重开业</h2>
+                            <p>
+                                2023年的春天注定不平凡，众益鑫公社推出的新零售超市计划，正如一声春雷炸响，轰动了神州大地每一寸土地，震撼着新零售与传统超市行业的心脉，也成为许多梦想者施展才干与能力的超级舞台。</p>
+                        </div>
+                        <div class="features-icon">
+                            <i class="fal fa-book-reader"></i>
+                        </div>
+                        <div class="features-overlay-text">
+                            <h2 class="title">04</h2>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- features-area-end -->
+
+    <!-- counter-area -->
+    <section class="counter-area-two counter-bg">
+        <div class="container">
+            <div class="row justify-content-end">
+                <div class="col-xl-6">
+                    <div class="section-title mb-50">
+                        <span class="sub-title" style="font-size:30px;">如果人人都献出一份爱</span>
+                        <h2 class="title">那我们的世界将充满爱</h2>
+                    </div>
+                    <div class="counter-item-wrap">
+                        <!--<div class="row g-0">-->
+                        <!--    <div class="col-sm-6">-->
+                        <!--        <div class="counter-item-two">-->
+                        <!--            <h2 class="count"><span class="odometer" data-count="50"></span></h2>-->
+                        <!--            <p>全球分布机构(个)</p>-->
+                        <!--        </div>-->
+                        <!--    </div>-->
+                        <!--    <div class="col-sm-6">-->
+                        <!--        <div class="counter-item-two">-->
+                        <!--            <h2 class="count"><span class="odometer" data-count="263"></span></h2>-->
+                        <!--            <p>累计援助金额(亿元)</p>-->
+                        <!--        </div>-->
+                        <!--    </div>-->
+                        <!--    <div class="col-sm-6">-->
+                        <!--        <div class="counter-item-two">-->
+                        <!--            <h2 class="count"><span class="odometer" data-count="1700"></span></h2>-->
+                        <!--            <p>累计援助(万人)</p>-->
+                        <!--        </div>-->
+                        <!--    </div>-->
+                        <!--    <div class="col-sm-6">-->
+                        <!--        <div class="counter-item-two">-->
+                        <!--            <h2 class="count"><span class="odometer" data-count="30000"></span></h2>-->
+                        <!--            <p>全球合作伙伴</p>-->
+                        <!--        </div>-->
+                        <!--    </div>-->
+                        <!--    <div class="col-sm-6">-->
+                        <!--        &nbsp;-->
+                        <!--    </div>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- counter-area-end -->
+
+    <!-- blog-area -->
+    <section class="blog-area-two pt-100 pb-70" id='zuixin'>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <div class="section-title text-center mb-50">
+                        <span class="sub-title">- NEWS -</span>
+                        <h2 class="title">最新活动</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+
+                <div class="col-xl-3 col-lg-4 col-sm-6">
+                    <div class="blog-item-two mb-50 wow fadeInUp" data-wow-delay=".2s">
+                        <div class="blog-thumb-two">
+                            <a href="/index/articledetails?id=308"><img src="" alt=""></a>
+                        </div>
+                        <div class="blog-content-two">
+                            <h2 class="title"><a href="/index/articledetails?id=308">关于有人冒充众益鑫退款郑重声明</a>
+                            </h2>
+                            <p>本公司郑重声明，本公司未在任何网站上发布过《退款公告》。
+                                近日，我司发现有不法人员以我公司的名义在网络上发布《退款公告》，严重
+                                侵犯了我公司的合法权益。对于上述假冒我司名称欺诈他人的不法行为，我公司
+                                特作出如下声明：
+                                一、广东众益鑫投资有限公司是一家经市场监督管理局正规注册的合法企业。
+                                本公司自2022年9月30日成立以来，响应国家号召，方便社区居民购物、增强
+                                城市服务功能、促进日用消费市场繁荣，在全国各地开设众益鑫新零售连锁超市：
+                                本公司资金实力雄厚，在运营期间未吸纳任何投资款项，从未进行或授权任何公
+                                司及个人从网上营销，实体加盟，技术转让等业务。
+                                二、本公司未在任何网站上发布过《退款公告》，一切冒名网站发布的公告与
+                                本公司无关，由此产生的一切法律责任应由冒名网站和个人承担。
+                                关于网络上出现的《退款公告》可以看来是网络诈骗行为，原因为二，
+                                1、诱导网站登记，盗取用户信息；
+                                2、所盖公章为假冒公章。
+                                针对以本公司名义骗取用户信息、欺诈用户的个别人员及公司，本公司在此郑
+                                重告诚即刻停止以上行为。
+                                三、本公司已启动法律程序追究假冒团伙的民事责任。构成刑事犯罪的，我
+                                公司将向国家司法机关控诉，依法追究其刑事责任。
+                                四、敬请广大用户注意辨识，避免受骗而蒙受损失！如需辨识公司真伪，核
+                                实人员身份或投诉举报，请致电：400-163-3666
+                            </p>
+                            <div class="blog-meta">
+                                <span><i class="fas fa-calendar-alt"></i>2023-07-10</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-4 col-sm-6">
+                    <div class="blog-item-two mb-50 wow fadeInUp" data-wow-delay=".2s">
+                        <div class="blog-thumb-two">
+                            <a href="/index/articledetails?id=307"><img src="" alt=""></a>
+                        </div>
+                        <div class="blog-content-two">
+                            <h2 class="title"><a href="/index/articledetails?id=307">关于抢夺市场资源的警示通知</a></h2>
+                            <p>
+                                近日，两位新会员前往某新零售超市考察了解，当地某团队领头人，在明知道考察客户已经是其他团队成员的情况下，仍鼓励两位会员卸载掉原有系统。然后发送自己的链接给两位会员，诱导两位会员重新注册，以成为其团队的成员！</p>
+                            <div class="blog-meta">
+                                <span><i class="fas fa-calendar-alt"></i>2023-06-25</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-4 col-sm-6">
+                    <div class="blog-item-two mb-50 wow fadeInUp" data-wow-delay=".2s">
+                        <div class="blog-thumb-two">
+                            <a href="/index/articledetails?id=306"><img src="" alt=""></a>
+                        </div>
+                        <div class="blog-content-two">
+                            <h2 class="title"><a href="/index/articledetails?id=306">关于提现额度调整的公告</a></h2>
+                            <p>节日之际，为更好地服务市场会员，公社特针对爱传递提现问题作出如下回复：
+                                最小提现金额由1000元调整至5000元（即余额不足5000元，可将余额转至上级推荐人，汇总到一个账户，满足5000元提现额度后，再行提现！）
+                                通过调整，可极大减轻客服系统压力，进而提升提现效率！也能增强各团队的粘稠度，凝聚力。因爱传递为合作的第三方平台，并不是众益鑫自主研发的app，因此我们无法更改提现门槛。望理解与支持！</p>
+                            <div class="blog-meta">
+                                <span><i class="fas fa-calendar-alt"></i>2023-06-22</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-4 col-sm-6">
+                    <div class="blog-item-two mb-50 wow fadeInUp" data-wow-delay=".2s">
+                        <div class="blog-thumb-two">
+                            <a href="/index/articledetails?id=304"><img src="" alt=""></a>
+                        </div>
+                        <div class="blog-content-two">
+                            <h2 class="title"><a href="/index/articledetails?id=304">同心凝聚
+                                粽情自然——仲夏端午，众益鑫浓情相聚</a></h2>
+                            <p>一年一度粽叶飘香，美食美刻享受生活！值此中华传统节日端午节到来之际，众益鑫向全体社员及合作伙伴，致以最诚挚的问候，以及最衷心的祝福！
+
+                                同时，公司特别出资1000万作为聚餐费用，推出众益鑫浓情相聚特别奖励活动：
+                                1.所有团队长，可向推荐人申请端午团队聚餐活动
+                                2.优秀团队长，由公社直接承办
+                                3.普通团队长，个人申请资金承办
+                                另：活动起始与截止时间为
+                                2023年6月20日至2023年6月28日</p>
+                            <div class="blog-meta">
+                                <span><i class="fas fa-calendar-alt"></i>2023-06-18</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="col-xl-3 col-lg-4 col-sm-6">-->
+                <!--    <div class="blog-item-two mb-50 wow fadeInUp" data-wow-delay=".4s">-->
+                <!--        <div class="blog-thumb-two">-->
+                <!--            <a href="/index/articledetails"><img src="{% static 'public/img/blog/h2_blog_img02.jpg' %}" alt=""></a>-->
+                <!--        </div>-->
+                <!--        <div class="blog-content-two">-->
+                <!--            <h2 class="title"><a href="/index/articledetails">保护非洲濒危野生动物，众益鑫公社在行动</a></h2>-->
+                <!--            <p>早晨7时起，陆陆续续有众益鑫公社志愿者和当地村民来到万盖国家公园，他们共同为津巴布韦的一批野生动物提供援助。</p>-->
+                <!--            <div class="blog-meta">-->
+                <!--                <span><i class="fas fa-calendar-alt"></i>2022-09-27</span>-->
+                <!--            </div>-->
+                <!--        </div>-->
+                <!--    </div>-->
+                <!--</div>-->
+                <!--<div class="col-xl-3 col-lg-4 col-sm-6">-->
+                <!--    <div class="blog-item-two mb-50 wow fadeInUp" data-wow-delay=".6s">-->
+                <!--        <div class="blog-thumb-two">-->
+                <!--            <a href="/index/articledetails"><img src="{% static 'public/img/blog/h2_blog_img03.jpg' %}" alt=""></a>-->
+                <!--        </div>-->
+                <!--        <div class="blog-content-two">-->
+                <!--            <h2 class="title"><a href="/index/articledetails">众益鑫公社西藏行——“暖心助学，心系你我”社会服务活动</a></h2>-->
+                <!--            <p>西藏由于海拔高，紫外线强，所以冬季比南方湿冷，北方寒风凌冽时，西藏却有着晴空暖阳，是慢节奏过暖冬的好地方，因日照充足，拉萨还被誉为日光城。</p>-->
+                <!--            <div class="blog-meta">-->
+                <!--                <span><i class="fas fa-calendar-alt"></i>2022-09-26</span>-->
+                <!--            </div>-->
+                <!--        </div>-->
+                <!--    </div>-->
+                <!--</div>-->
+                <!--<div class="col-xl-3 col-lg-4 col-sm-6">-->
+                <!--    <div class="blog-item-two mb-50 wow fadeInUp" data-wow-delay=".8s">-->
+                <!--        <div class="blog-thumb-two">-->
+                <!--            <a href="/index/articledetails"><img src="{% static 'public/img/blog/h2_blog_img04.jpg' %}" alt=""></a>-->
+                <!--        </div>-->
+                <!--        <div class="blog-content-two">-->
+                <!--            <h2 class="title"><a href="/index/articledetails">情系环卫工，用行动传递爱心”众益鑫公社送温暖慰问社会服务活动</a></h2>-->
+                <!--            <p>你为我守护，我为你尽心。环卫工人被人们赞誉为"城市黄玫瑰"、"马路天使"和"城市美容师"，是美丽城市的守护者，他们一年四季风雨无阻、坚守岗位</p>-->
+                <!--            <div class="blog-meta">-->
+                <!--                <span><i class="fas fa-calendar-alt"></i>2022-09-25</span>-->
+                <!--            </div>-->
+                <!--        </div>-->
+                <!--    </div>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </section>
+    <!-- blog-area-end -->
+
+</main>
+<!-- main-area-end -->
+
+<!-- footer-area -->
+<footer>
+    <div class="footer-area-two footer-bg">
+        <div class="container">
+            <div class="footer-contact-info">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-xl-8">
+                        <div class="footer-contact-wrap">
+                            <div class="row justify-content-center">
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="contact-item">
+                                        <div class="icon">
+                                            <img src="{% static 'public/img/icon/f_contact_icon04.png' %}"
+                                                 alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h4 class="title">官方热线</h4>
+                                            <a href="/">400-1633666</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="contact-item">
+                                        <div class="icon">
+                                            <img src="{% static 'public/img/icon/f_contact_icon05.png' %}"
+                                                 alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h4 class="title">官方邮箱</h4>
+                                            <a href="mailto:zhongyixingongshe@163.com">zhongyixingongshe@163.com</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="contact-item">
+                                        <div class="icon">
+                                            <img src="{% static 'public/img/icon/f_contact_icon06.png' %}"
+                                                 alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h4 class="title">总部地址</h4>
+                                            <span>中国 · 台湾省台北市</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="footer-social style-two">
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-top mb-50">
+                <div class="footer-menu-wrap">
+                    <div class="footer-logo">
+                        <a href="/"><img src="{% static 'public/img/logo/logo.png' %}" alt=""></a>
+                    </div>
+                    <div class="footer-menu">
+                        <ul>
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/index/about">公社介绍</a></li>
+                            <li><a href="/#zuixin">最新活动</a></li>
+                            <li><a href="/category/社会服务?page=1">社会服务</a></li>
+                            <li><a href="/index/about#hezuo">合作伙伴</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-donation">
+                        <a href="/" class="btn"><i class="fas fa-heart"></i>加入众益鑫</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="copyright-text">
+                            <p>© 2022 众益鑫公社版权所有</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer-bottom-right">
+                            <ul>
+                                <li><a href="contact.html">官方热线</a></li>
+                                <li><a href="contact.html">400-1633666</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script defer="true" src="https://3ce4yg.com/chat/chat_01hcR0.html"></script>
+
+<!-- footer-area-end -->
+</body>
+<!-- JS here -->
+<script src="{% static 'public/js/vendor/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'public/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'public/js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'public/js/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'public/js/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'public/js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'public/js/jquery.odometer.min.js' %}"></script>
+<script src="{% static 'public/js/jquery.easypiechart.min.js' %}"></script>
+<script src="{% static 'public/js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'public/js/jquery.inview.min.js' %}"></script>
+<script src="{% static 'public/js/jquery.appear.js' %}"></script>
+<script src="{% static 'public/js/slick.min.js' %}"></script>
+<script src="{% static 'public/js/wow.min.js' %}"></script>
+<script src="{% static 'public/js/main.js' %}"></script>
+
+<script>
+
+    $(document).ready(function () {
+        if (localStorage.getItem('id') > 0) {
+
+            $.ajax({
+                url: "/member/view",
+                dataType: "json",
+                type: "post",
+                cache: false,
+                data: {
+                    id: localStorage.getItem('id')
+
+                },
+                success: function (data) {
+                    console.log('返回值', data)
+                    if (data.status == 200) {
+                        // localStorage.setItem('id',data.data)
+                        // localStorage.setItem('token',data.token)
+                        // alert('注册成功,将为您跳转实名认证');
+                        // // setTimeout(function() {
+
+                        // 	window.location.href='/index/renzheng';
+                        // // }, 1500);
+                        localStorage.setItem('realname', data.data.realname ? data.data.realname : data.data.username)
+
+
+                        $("#zhuangtai").html('<a href="/index/afterlogin" class="btn btn-style-two">会员中心</a>')
+                        if (!data.data.idcard) {
+                            window.location.href = '/index/renzheng';
+                        }
+
+                        if (!data.data.shiming) {
+                            window.location.href = '/index/renzhengcode';
+                        }
+
+
+                    } else {
+                        // storage.removeItem('id')
+                        localStorage.setItem('id', null)
+                        // 		alert(data.msg);
+                        return;
+                    }
+
+                }
+            });
+
+
+        }
+
+        // $("#tuichu").click(function(){
+        // 	alert('退出');
+        // 	})
+
+    });
+</script>
+<script>
+    function tuichu() {
+        var msg = "确定要退出登录吗";
+        if (confirm(msg) == true) {
+            localStorage.removeItem('id')
+
+            localStorage.removeItem('token')
+            window.location.reload()
+
+            //   return true;
+        } else {
+            return false;
+        }
+    }
+</script>

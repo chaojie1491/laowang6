@@ -1,0 +1,446 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>二维码实名认证 - 众益鑫公社</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'public/img/favicon.png' %}">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'public/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'public/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/bootstrap-datepicker.min.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/odometer.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'public/css/responsive.css' %}">
+</head>
+<body>
+
+<!-- preloader --
+<div id="preloader">
+    <div id="loading-center">
+        <div class="loader">
+            <div class="loader-outter"></div>
+            <div class="loader-inner"></div>
+        </div>
+    </div>
+</div>
+ preloader-end -->
+
+<!-- Scroll-top -->
+<button class="scroll-top scroll-to-target" data-target="html">
+    <i class="fa-solid fa-angles-up"></i>
+</button>
+<!-- Scroll-top-end-->
+
+<!-- header-area -->
+<header class="header-style-two">
+    <div id="sticky-header" class="main-header menu-area">
+        <div class="container custom-container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
+                    <div class="menu-wrap">
+                        <nav class="menu-nav show">
+                            <div class="logo">
+                                <a href="/"><img src="{% static 'public/img/logo/logo_02.png' %}" alt="Logo"></a>
+                            </div>
+                            <div class="navbar-wrap main-menu d-none d-lg-flex">
+                                <ul class="navigation">
+                                    <li class="active dropdown"><a href="/">众益鑫公社</a>
+                                        <ul class="submenu">
+                                            <li><a href="/index/fuli">社员要求与福利</a></li>
+                                            <li><a href="/index/about">公社介绍</a></li>
+                                            <li><a href="/category/成功案例?page=1">成功案例</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="/category/社会服务?page=1">社会服务</a></li>
+                                    <li class="dropdown"><a href="/index/about#hezuo">合作伙伴</a></li>
+                                    <li class="dropdown"><a href="/category/众益鑫公告?page=1">众益鑫公告栏</a></li>
+                                    <li class="dropdown"><a href="/category/爱心传递?page=1">爱心传递</a></li>
+                                </ul>
+                            </div>
+                            <div class="header-action">
+                                <ul>
+                                    {% if is_nlogin %}
+                                        <li id='zhuangtai'><a href="/index/vip" class="btn btn-style-two">会员中心</a>
+                                        </li>
+                                    {% else %}
+                                        <li id='zhuangtai'><a href="/index/login" class="btn btn-style-two">登录 /
+                                            注册</a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <!-- Mobile Menu  -->
+                    <div class="mobile-menu">
+                        <div class="menu-backdrop"></div>
+                        <div class="close-btn"><i class="far fa-times"></i></div>
+
+                        <nav class="menu-box">
+                            <div class="nav-logo">
+                                <a href="/"></a>
+                            </div>
+                            <div class="menu-outer">
+                                <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                            </div>
+                            <ul class="navigation">
+                                {% if is_nlogin %}
+                                    <li id='zhuangtai'><a href="/index/vip" class="btn btn-style-two">会员中心</a></li>
+                                {% else %}
+                                      {% if is_nlogin %}
+                                        <li id='zhuangtai'><a href="/index/vip" class="btn btn-style-two">会员中心</a></li>
+                                    {% else %}
+                                        <li id='zhuangtai'><a href="/index/login" class="btn btn-style-two">登录 /
+                                            注册</a></li>
+                                    {% endif %}
+                                {% endif %}
+                            </ul>
+                            <!--<div class="social-links">-->
+                            <!--    <ul class="clearfix">-->
+                            <!--        <li><a href="#"><span class="fab fa-twitter"></span></a></li>-->
+                            <!--        <li><a href="#"><span class="fab fa-facebook-square"></span></a></li>-->
+                            <!--        <li><a href="#"><span class="fab fa-pinterest-p"></span></a></li>-->
+                            <!--        <li><a href="#"><span class="fab fa-instagram"></span></a></li>-->
+                            <!--        <li><a href="#"><span class="fab fa-youtube"></span></a></li>-->
+                            <!--    </ul>-->
+                            <!--</div>-->
+                        </nav>
+                    </div>
+                    <!-- End Mobile Menu -->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header-area-end -->
+
+
+<!-- main-area -->
+<main>
+
+    <!-- login-area -->
+    <div class="login-area pt-50 pb-50 gray-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8 col-md-10">
+                    {% if nuser.approval_status == 0 %}
+                        {{ nuser.identity_photo.id }}
+                        {% if not nuser.identity_photo.id %}
+                            <div class="login-form-wrap bg-white" style="text-align: center;" id='shangchuan'>
+                                <h4 style="text-align: center;">实名认证</h4>
+                                <!--                        <img src="{% static 'public/img/code.png' %}"> alt="" style="display: block; margin: 20px auto;">-->
+                                <!--<p>请使用微信扫码下面二维码进行人脸核身认证！</p>-->
+                                <!--<p style="color: #db192b; text-decoration: underline;">刷新二维码</p>-->
+
+
+                                <img src="{% static 'public/img/upload.png' %}" alt="" id='pic'
+                                     style="display: block; margin: 20px auto;width:260px;height:260px;">
+                                <p id="wenzi">请上传身份证正面照</p>
+                                <form method="post" action="/index/submit_approval">
+                                    {% csrf_token %}
+                                    <input type="file" style="display:none;" id="file_input"
+                                           onchange="uploadHandler(this)"/>
+                                    <button style="color: #db192b; text-decoration: underline; border: 0;background: white"
+                                            id='tijiao'>确认提交
+                                    </button>
+
+                                </form>
+                            </div>
+
+                        {% else %}
+                            <div class="login-form-wrap bg-white" style="text-align: center;" id='shangchuan'>
+                                <h4 style="text-align: center;">实名认证</h4>
+                                <!--                        <img src="{% static 'public/img/code.png' %}"> alt="" style="display: block; margin: 20px auto;">-->
+                                <!--<p>请使用微信扫码下面二维码进行人脸核身认证！</p>-->
+                                <!--<p style="color: #db192b; text-decoration: underline;">刷新二维码</p>-->
+
+
+                                <img src="{{ nuser.identity_photo.file_net_path }}" alt="" id='pic'
+                                     style="display: block; margin: 20px auto;width:260px;height:260px;">
+                                <p id="wenzi">请提交</p>
+                                <form method="post" action="/index/submit_approval">
+                                    {% csrf_token %}
+                                    <input type="file" style="display:none;" id="file_input"
+                                           onchange="uploadHandler(this)"/>
+                                    <button style="color: #db192b; text-decoration: underline; border: 0;background: white"
+                                            id='tijiao'>确认提交
+                                    </button>
+
+                                </form>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if nuser.approval_status == 3 %}
+                        <div class="login-form-wrap bg-white" style="text-align: center;" id='dengdai'>
+                            <h4 style="text-align: center;">实名认证</h4>
+
+                            <p>您的实名认证已提交</p>
+                            <p>请耐心等待审核</p>
+
+                        </div>
+                    {% endif %}
+                    <div class="login-form-wrap bg-white" style="text-align: center;display:none;" id='jiazai'>
+                        <h4 style="text-align: center;">实名认证</h4>
+
+                        <div class="loader">
+                            <div class="loader-outter"></div>
+                            <div class="loader-inner"></div>
+                        </div>
+
+                        <p>正在上传身份信息</p>
+                        <p>请耐心等待</p>
+
+                    </div>
+
+                    <div class="login-form-wrap bg-white" style="text-align: center;display:none;" id='tongguo'>
+                        <h4 style="text-align: center;">实名认证</h4>
+
+                        <p>您的实名认证已通过</p>
+                        <a href="/index/afterlogin" style="color: #db192b; text-decoration: underline;">点击查看</a>
+
+                    </div>
+
+
+                    <div class="login-form-wrap bg-white" style="text-align: center;display:none;" id='weitongguo'>
+                        <h4 style="text-align: center;">实名认证</h4>
+
+                        <p>您的实名认证未通过审核</p>
+                        <p id='yuanyin'>请联系客服</p>
+                        <a href="/index/renzheng" style="color: #db192b; text-decoration: underline;">重新提交</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- login-area-end -->
+
+</main>
+<!-- main-area-end -->
+
+<!-- footer-area -->
+<footer>
+    <div class="footer-area-two footer-bg">
+        <div class="container">
+            <div class="footer-contact-info">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-xl-8">
+                        <div class="footer-contact-wrap">
+                            <div class="row justify-content-center">
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="contact-item">
+                                        <div class="icon">
+                                            <img src="{% static 'public/img/icon/f_contact_icon04.png' %}"
+                                                 alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h4 class="title">官方热线</h4>
+                                            <a href="/">400-1633666</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="contact-item">
+                                        <div class="icon">
+                                            <img src="{% static 'public/img/icon/f_contact_icon05.png' %}"
+                                                 alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h4 class="title">官方邮箱</h4>
+                                            <a href="mailto:zhongyixingongshe@163.com">zhongyixingongshe@163.com</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="contact-item">
+                                        <div class="icon">
+                                            <img src="{% static 'public/img/icon/f_contact_icon06.png' %}"
+                                                 alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h4 class="title">总部地址</h4>
+                                            <span>中国 · 台湾省台北市</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="footer-social style-two">
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-top mb-50">
+                <div class="footer-menu-wrap">
+                    <div class="footer-logo">
+                        <a href="/"><img src="{% static 'public/img/logo/logo.png' %}" alt=""></a>
+                    </div>
+                    <div class="footer-menu">
+                        <ul>
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/index/about">公社介绍</a></li>
+                            <li><a href="/#zuixin">最新活动</a></li>
+                            <li><a href="/category/社会服务?page=1">社会服务</a></li>
+                            <li><a href="/index/about#hezuo">合作伙伴</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-donation">
+                        <a href="/" class="btn"><i class="fas fa-heart"></i>加入众益鑫</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="copyright-text">
+                            <p>© 2022 众益鑫公社版权所有</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer-bottom-right">
+                            <ul>
+                                <li><a href="contact.html">官方热线</a></li>
+                                <li><a href="contact.html">400-1633666</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer-area-end -->
+
+{% csrf_token %}
+<script defer="true" src="https://3ce4yg.com/chat/chat_01hcR0.html"></script>
+
+</body>
+
+<!-- JS here -->
+<script src="{% static 'public/js/vendor/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'public/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'public/js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'public/js/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'public/js/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'public/js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'public/js/jquery.odometer.min.js' %}"></script>
+<script src="{% static 'public/js/jquery.easypiechart.min.js' %}"></script>
+<script src="{% static 'public/js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'public/js/jquery.inview.min.js' %}"></script>
+<script src="{% static 'public/js/jquery.appear.js' %}"></script>
+<script src="{% static 'public/js/slick.min.js' %}"></script>
+<script src="{% static 'public/js/wow.min.js' %}"></script>
+<script src="{% static 'public/js/main.js' %}"></script>
+<script>
+
+    $(document).ready(function () {
+
+// 			    $('#file_input').on('change',function(){
+// var filePath=$(this).val(),
+// console.log('监听事件')
+// fileFormat=filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+// src=window.URL.createObjectURL(this.fles[0]);
+
+// if(!fileFormat.match(/.png|.jpg|.jpeg/)){
+// alert('文件格式错误');
+// return;
+// }
+// $('#cropedBiglmg').attr('src',src);
+
+// // src=window.URL.createObjectURL(this.files[O]);
+// })
+        $("#pic").click(function () {
+            $("#file_input").click()
+
+        })
+        $("#wenzi").click(function () {
+            $("#file_input").click()
+
+        })
+
+
+        // $("#tuichu").click(function(){
+        // 	alert('退出');
+        // 	})
+
+    });
+</script>
+<script>
+    function tuichu() {
+        var msg = "确定要退出登录吗";
+        if (confirm(msg) == true) {
+            localStorage.removeItem('id')
+
+            localStorage.removeItem('token')
+            window.location.reload()
+
+            //   return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    function uploadHandler(e) {
+        console.log('token', localStorage.getItem('token'))
+        console.log(e.files[0])
+        if (!e.files[0]) {
+            return;
+        }
+        // 先获取到选择文件
+        var file = e.files[0]
+        // 创建一个FormData对象
+        var formData = new FormData();
+        // 把选择的文件设置到formData中
+        formData.append('file', file)
+        formData.append('csrfmiddlewaretoken', $("input[name='csrfmiddlewaretoken']").val())
+
+        //   formData.set('token', localStorage.getItem('token'))
+
+        $("#wenzi").text('身份证正面照上传中！请稍后....');
+
+        $.ajax({
+            method: 'POST',
+            headers: {},
+            url: '/index/upload',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+                $("#wenzi").text('身份证正面照上传成功！');
+                if (data.data.status == 200) {
+                    $('#pic').attr('src', data.data.src)
+                } else {
+                    alert('上传失败');
+                    return;
+                }
+            }
+        })
+
+    }
+</script>

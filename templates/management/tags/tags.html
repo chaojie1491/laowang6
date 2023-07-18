@@ -1,0 +1,89 @@
+{% extends 'management/_common/base.html' %}
+{% load page_tag %}
+
+{% block content %}
+    <form style="padding: 0;" action="/management/tags" method="get">
+        <div style="padding: 0" class="ui input">
+            <input name="search_name" type="text" style="margin-right: 5px" placeholder="Name">
+            <button type="submit" class="ui button primary"><i class="search icon"></i>搜索</button>
+            <a href="/management/tags" type="reset" class="ui button secondary"><i class="refresh icon"></i>重置</a>
+        </div>
+    </form>
+
+    <table style="padding: 0" class="ui celled table">
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for tag in tags %}
+            <tr>
+                <td>{{ tag.name }}</td>
+                <td><a onclick="deleteConfirm({{ tag.id }})" href="#" class="button" style="color: red">删除</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th colspan="7">
+                <div class="ui right floated pagination menu">
+                    {% if tags.number > 1 %}
+                        <a href="?page={{ tags.number|add:-1 }}" class="icon item">
+                            <i class="left chevron icon"></i>
+                        </a>
+                    {% else %}
+                        <a class="icon item">
+                            <i class="left chevron icon"></i>
+                        </a>
+                    {% endif %}
+
+                    {% for page in tags.paginator.page_range %}
+                        {% circle_page tags.number page %}
+                    {% endfor %}
+                    {% if tags.number <  tags.paginator.num_pages %}
+
+                        <a href="?page={{ tags.number | add:1 }}" class="icon item">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    {% else %}
+                        <a class="icon item">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    {% endif %}
+
+                </div>
+            </th>
+        </tr>
+        </tfoot>
+    </table>
+    <div class="ui mini test modal">
+        <div class="header">
+            警告
+        </div>
+        <div class="content">
+            <p>确认删除该标签？</p>
+        </div>
+        <div class="actions">
+            <div class="ui negative button">
+                取消
+            </div>
+            <a id="deleteBtn" href="" class="ui positive right labeled icon button">
+                确认
+                <i class="checkmark icon"></i>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script>
+        function deleteConfirm(id) {
+            $('.mini.modal')
+                .modal('show')
+            $("#deleteBtn").attr('href', '/management/tags/delete?id=' + id)
+        }
+    </script>
+{% endblock %}

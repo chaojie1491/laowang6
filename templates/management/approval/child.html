@@ -1,0 +1,235 @@
+{% load static %}{% load day_util %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=no"
+    />
+    <meta
+            name="description"
+            content="Semantic-UI-Forest, collection of design, themes and templates for Semantic-UI."
+    />
+    <meta name="keywords" content="Semantic-UI, Theme, Design, Template"/>
+    <meta name="author" content="PPType"/>
+    <meta name="theme-color" content="#ffffff"/>
+    <title>{{ article.title }}-后台管理</title>
+
+    <link
+            rel="stylesheet"
+            href="{% static 'semantic.min.css' %}"
+            type="text/css"
+    />
+    <link rel="stylesheet" href="{% static 'highlightjs/styles/androidstudio.min.css' %}">
+
+    <style type="text/css">
+        p {
+            font-size: 1.2em;
+        }
+
+        body {
+            padding-top: 54px;
+            -webkit-font-smoothing: antialiased;
+            -moz-font-smoothing: grayscale;
+        }
+
+
+        .ui.borderless.menu {
+            background-color: #f8f8f8;
+        {#box-shadow: none;#} flex-wrap: wrap;
+            border: none;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .ui.borderless.menu .header.item {
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .ui.mobile.only.grid .ui.menu .ui.vertical.menu {
+            display: none;
+        }
+
+        .ui.mobile.only.grid .ui.vertical.menu .dropdown.icon {
+            float: unset;
+        }
+
+        .ui.mobile.only.grid .ui.vertical.menu .dropdown.icon:before {
+            content: "\f0d7";
+        }
+
+        .ui.mobile.only.grid .ui.vertical.menu .ui.dropdown.item .menu {
+            position: static;
+            width: 100%;
+            background-color: unset;
+            border: none;
+            box-shadow: none;
+        }
+
+        .ui.mobile.only.grid .ui.vertical.menu .ui.dropdown.item .menu {
+            margin-top: 6px;
+        }
+
+        .ui.container > .ui.message {
+            background-color: rga(238, 238, 238);
+            box-shadow: none;
+            padding: 5rem 4rem;
+            margin-top: 1rem;
+        }
+
+        .ui.message h1.ui.header {
+            font-size: 4.5rem;
+        }
+
+        .ui.message p.lead {
+            font-size: 1.3rem;
+            color: #333333;
+            line-height: 1.4;
+            font-weight: 300;
+        }
+
+        p > img {
+            width: 100%;
+            height: 100%;
+        }
+
+        a > img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .pre {
+            background-color: antiquewhite;
+            border-radius: 4px;
+        }
+    </style>
+
+</head>
+
+<body id="root">
+{% if is_login %}
+    {% csrf_token %}
+{% endif %}
+<div class="ui tablet computer only padded grid">
+    <div class="ui top fixed borderless fluid huge menu">
+        <div class="ui container">
+            <a class="header item"><img style="width: 7em;" src="{% static '/img.png' %}"/></a>
+            <a href="{% url 'index' %}" class="{% if current_category == None %}
+                active
+                {% else %}
+                {% endif %} item">主页</a>
+
+            {% for item in category %}
+                {#                    <li class="category_li"><a href="/category/{{ item.name }}?page=1">{{ item.name }}</a></li>#}
+                <a class="{% if current_category != None and current_category == item.name %}
+                active
+                {% else %}
+                {% endif %} item" href="/category/{{ item.name }}?page=1">{{ item.name }}</a>
+
+            {% endfor %}
+            <div class="right menu">
+                <a href="#" class="item">Git Repository</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ui mobile only padded grid">
+    <div class="ui top fixed borderless huge fluid menu">
+        <a class="header item"><img style="width: 7em;" src="{% static '/img.png' %}"/></a>
+        <div class="right menu">
+            <div class="item">
+                <button class="ui icon toggle basic button">
+                    <i class="content icon"></i>
+                </button>
+            </div>
+        </div>
+        <div class="ui vertical borderless fluid menu">
+            <a href="{% url 'index' %}" class="{% if current_category == None %}
+                active
+                {% else %}
+                {% endif %} item">主页</a>
+            {% for item in category %}
+                {#                    <li class="category_li"><a href="/category/{{ item.name }}?page=1">{{ item.name }}</a></li>#}
+                <a class="{% if current_category != None and current_category == item.name %}
+                active
+                {% else %}
+                {% endif %} item" href="/category/{{ item.name }}?page=1">{{ item.name }}</a>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="ui grid stackable container">
+    <div class="row" id="article">
+        <div class="eleven wide column">
+            <div class="ui comments">
+                <div class="comment">
+                    <a class="avatar">
+                        <img src="/user_avatar/{{ article.user_id }}">
+                    </a>
+                    <div class="content">
+                        <a class="author">{{ article.user__first_name }}{{ article.user__last_name }}</a>
+                        <div class="metadata">
+                            <div class="date">发布于: {{ article.created_time|days_until }}</div>
+                        </div>
+                        <div class="text">hava a nice day.</div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="ui large header">
+                <div class="content">{{ article.title }}</div>
+            </h2>
+            {% autoescape off %}
+
+                {{ article.html_text }}
+            {% endautoescape %}
+
+
+            <div class="ui hidden divider"></div>
+        </div>
+        <div class="four wide right floated column">
+            <h4 class="ui header">归档</h4>
+            <div class="ui list">
+                {% for record in records %}
+                    <a class="item" href="/date/{{ record.datetime }}?page=1">{{ record.datetime }}
+                        ({{ record.count }})</a>
+                {% endfor %}
+
+            </div>
+            <h4 class="ui header">Top</h4>
+            <div class="ui list">
+                {% for tag in tags %}
+                    <a class="item" href="/tag/{{ tag.name }}?page=1">{{ tag.name }} ({{ tag.count }})</a>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ui divider"></div>
+<footer>
+    <div style="text-align: center;height: 40px"><p>@2024 C.J</p></div>
+</footer>
+<script type="application/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="application/javascript" src="{% static 'semantic.js' %}"></script>
+<script src="{% static 'highlightjs/highlight.min.js' %}"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".ui.toggle.button").click(function () {
+            $(".mobile.only.grid .ui.vertical.menu").toggle(100);
+        });
+
+        $(".ui.dropdown").dropdown();
+    });
+</script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+{% extends 'management/_common/base.html' %}
+{% load page_tag %}
+
+{% block content %}
+    <form style="padding: 0;" action="/management/" method="get">
+        <div style="padding: 0" class="ui input">
+            <input name="search_real_name" type="text" style="margin-right: 5px" placeholder="姓名">
+            <input name='search_phone_number' type="text" style="margin-right: 5px" placeholder="手机号">
+            <input name='search_status' type="text" style="margin-right: 5px" placeholder="状态">
+            <button type="submit" class="ui button primary"><i class="search icon"></i>搜索</button>
+            <a href="/management/" type="reset" class="ui button secondary"><i class="refresh icon"></i>重置</a>
+        </div>
+        <a href="" onclick="downloadFile('/management/approval/export','用户列表.xlsx')" type="reset" class="ui button"><i
+                class="file icon"></i>导出</a>
+    </form>
+
+    <table style="padding: 0;font-size: 10px" class="ui celled table">
+        <thead>
+        <tr>
+            <th>手机号</th>
+            <th>姓名</th>
+            <th>身份证</th>
+            <th>创建时间</th>
+            <th>邀请码</th>
+            <th>实名时间</th>
+            <th>审核状态</th>
+            <th>邀请总人数</th>
+            <th>邀请人</th>
+            <th>身份证照片</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.phone_number }}</td>
+                <td>{{ user.real_name }}</td>
+                <td>{{ user.identity_number }}</td>
+                <td>{{ user.create_time }}</td>
+                <td>{{ user.invitation_code }}</td>
+                <td>{{ user.approval_time }}</td>
+                <td>{% if user.approval_status == 1 %}
+                    <strong style="color: green">通过</strong>
+                {% elif  user.approval_status == 3 %}
+                    <strong style="color: #d2664b">待审核</strong>
+                {% elif  user.approval_status == 0 %}
+                    <strong style="color: orange">未提交</strong>
+                {% elif  user.approval_status == 2 %}
+                    <strong style="color: red">驳回</strong>
+                {% endif %} </td>
+                <td>{{ user.count }}</td>
+                <td>{{ user.invited_user__invitation_user__real_name }}</td>
+                {% if user.identity_photo__file_net_path %}
+                    <td><a href="{{ user.identity_photo__file_net_path }}"><img width="50" height="50"
+                                                                                src="{{ user.identity_photo__file_net_path }}"/></a>
+                    </td>
+                {% else %}
+                    <td><strong style="color: red">未上传</strong></td>
+                {% endif %}
+
+                <td>{% if user.status == 0 %}
+                    <strong style="color: green">正常</strong>
+                {% else %}
+                    <strong style="color: orange">拉黑</strong>
+                {% endif %} </td>
+                <td>
+                    <div class="ui dropdown">
+                        <div class="text">操作</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <div class="item"
+                                 onclick="open_approval_dialog('{{ user.id }}','{{ user.real_name }}','{{ user.identity_photo__file_net_path }})','{{ user.identity_number }}',{{ user.approval_status }},{{ user.reject_reason }})">
+                                审核
+                            </div>
+                            <div class="item">修改</div>
+                            <div class="item">查看下线</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th colspan="12">
+                <div class="ui right floated pagination menu">
+                    {% if users.number > 1 %}
+                        <a href="?page={{ users.number|add:-1 }}" class="icon item">
+                            <i class="left chevron icon"></i>
+                        </a>
+                    {% else %}
+                        <a class="icon item">
+                            <i class="left chevron icon"></i>
+                        </a>
+                    {% endif %}
+
+                    {% for page in users.paginator.page_range %}
+                        {% circle_page users.number page %}
+                    {% endfor %}
+                    {% if users.number <  users.paginator.num_pages %}
+
+                        <a href="?page={{ users.number | add:1 }}" class="icon item">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    {% else %}
+                        <a class="icon item">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    {% endif %}
+
+                </div>
+            </th>
+        </tr>
+        </tfoot>
+    </table>
+    <div class="ui mini test modal">
+        <div class="header">
+            警告
+        </div>
+        <div class="content">
+            <p>确认删除该文章？</p>
+        </div>
+        <div class="actions">
+            <div class="ui negative button">
+                取消
+            </div>
+            <a id="deleteBtn" href="" class="ui positive right labeled icon button">
+                确认
+                <i class="checkmark icon"></i>
+            </a>
+        </div>
+    </div>
+    <div id="approval_dialog" class="ui small modal">
+    <i class="close icon"></i>
+    <div class="header">
+        审核
+    </div>
+    <div class="content">
+        <form id="approval_form" method="post" action="/management/approval/approval" class="ui form">
+            {% csrf_token %}
+            <input hidden="hidden" name="id" id="approval_id">
+            <h4 id="approval_real_name" class="ui dividing header"></h4>
+            <div class="another example" data-use-content="true">
+                <div class="inline fields">
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input value="3" type="radio" checked="checked" name="approval_status"/>
+                            <label>待定</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input value="1" type="radio" name="approval_status"/>
+                            <label>通过</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div value="2" class="ui radio checkbox">
+                            <input type="radio" value="2" name="approval_status"/>
+                            <label>拒绝</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="field">
+                <label>拒绝理由</label>
+                <textarea id="reject_reason" name="reject_reason"></textarea>
+            </div>
+        </form>
+        <div class="actions" style="text-align: right;margin-top: 10px">
+            <div class="ui button">取消</div>
+            <div onclick="submit_approval()" class="ui green button">提交</div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+        function downloadWithBlob(url) {
+            fetch(url)
+                .then(res => res.blob())
+                .then(blob => {
+                    // FileReader.readAsDataURL()
+                    const url = URL.createObjectURL(blob)
+                    // 借助第一类方式：location.href、iframe.src、a[download].click()
+                    window.open(url)
+                })
+        }
+
+        function downloadFile(url, fileName) {
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function submit_approval() {
+            $("#approval_form").submit()
+        }
+
+        function cancel_approval() {
+            $("#approval_dialog").modal('hide')
+        }
+
+        function open_approval_dialog(id, rela_name, file_net_path, identity_number, approval_status, reject_reason) {
+            for (let i = 0; i < $("[name='approval_status']").length; i++) {
+                let checks = $("[name='approval_status']")
+                if ($(checks[i]).attr('value') == approval_status) {
+                    $(checks[i]).attr('checked', true)
+                    break
+                } else {
+                    $(checks[i]).attr('checked', false)
+                }
+            }
+
+
+            $("#approval_dialog").modal('show')
+            $("#approval_real_name").html(rela_name)
+            $("#approval_id").val(id)
+            $("#reject_reason").val(reject_reason)
+        }
+
+        function deleteConfirm(id) {
+            $('.mini.modal')
+                .modal('show')
+            $("#deleteBtn").attr('href', '/management/article/delete_article?id=' + id)
+        }
+
+        $(document).ready(function () {
+            $(".ui.dropdown").dropdown();
+        });
+    </script>
+{% endblock %}

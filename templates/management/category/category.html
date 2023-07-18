@@ -1,0 +1,153 @@
+{% extends 'management/_common/base.html' %}
+{% load page_tag %}
+
+{% block content %}
+    <form style="padding: 0;" action="/management/category" method="get">
+        <div style="padding: 0" class="ui input">
+            <input name="search_name" type="text" style="margin-right: 5px" placeholder="Name">
+            <button type="submit" class="ui button primary"><i class="search icon"></i>搜索</button>
+            <a href="/management/category" type="reset" class="ui button secondary"><i class="refresh icon"></i>重置</a>
+            <a onclick="addConfirm()" type="reset" class="ui button green"><i class="add icon"></i>添加分类</a>
+        </div>
+    </form>
+
+    <table style="padding: 0" class="ui celled table">
+        <thead>
+        <tr>
+            <th>SEQ</th>
+            <th>名称</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in category %}
+            <tr>
+                <td>{{ item.seq }}</td>
+                <td>{{ item.name }}</td>
+                <td><a onclick="deleteConfirm({{ item.id }})" href="#" class="button" style="color: red">删除</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th colspan="7">
+                <div class="ui right floated pagination menu">
+                    {% if category.number > 1 %}
+                        <a href="?page={{ category.number|add:-1 }}" class="icon item">
+                            <i class="left chevron icon"></i>
+                        </a>
+                    {% else %}
+                        <a class="icon item">
+                            <i class="left chevron icon"></i>
+                        </a>
+                    {% endif %}
+
+                    {% for page in category.paginator.page_range %}
+                        {% circle_page category.number page %}
+                    {% endfor %}
+                    {% if category.number <  category.paginator.num_pages %}
+
+                        <a href="?page={{ category.number | add:1 }}" class="icon item">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    {% else %}
+                        <a class="icon item">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    {% endif %}
+
+                </div>
+            </th>
+        </tr>
+        </tfoot>
+    </table>
+    <div class="ui mini test modal">
+        <div class="header">
+            警告
+        </div>
+        <div class="content">
+            <p>确认删除该分类？</p>
+        </div>
+        <div class="actions">
+            <div class="ui negative button">
+                取消
+            </div>
+            <a id="deleteBtn" href="" class="ui positive right labeled icon button">
+                确认
+                <i class="checkmark icon"></i>
+            </a>
+        </div>
+    </div>
+
+    <div id="addModel" class="ui special modal">
+        <div class="header">
+            添加分类
+        </div>
+        <div class="content">
+            <form method="post" action="/management/category/add" id="addform" class="ui form">
+                {% csrf_token %}
+                <div class="field">
+                    <label>排序</label>
+                    <input type="text" name="seq" placeholder="排序">
+                </div>
+                <div class="field">
+                    <label>分类名称</label>
+                    <input type="text" name="category_name" placeholder="分类名称">
+                </div>
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui negative button">
+                取消
+            </div>
+            <div id="addBtn" class="ui positive right labeled icon button">
+                确认
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+     $("#addform").form({
+            fields: {
+                title: {
+                    identifier: "seq",
+                    rules: [
+                        {
+                            type: "empty",
+                            prompt: "请输入SEQ"
+                        }
+                    ]
+                },
+                intro: {
+                    identifier: "category_name",
+                    rules: [
+                        {
+                            type: "empty",
+                            prompt: "请输入名称"
+                        }
+                    ]
+                }
+            },
+            inline: true,
+            on: "blur"
+        });
+        $("#addBtn").on("click", function () {
+            $("#addform").submit();
+        });
+
+        function deleteConfirm(id) {
+            $('.mini.modal')
+                .modal('show')
+            $("#deleteBtn").attr('href', '/management/category/delete?id=' + id)
+        }
+
+        function addConfirm() {
+            $('#addModel')
+                .modal('show')
+        }
+    </script>
+{% endblock %}

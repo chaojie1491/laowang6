@@ -1,0 +1,460 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>社员要求与福利 - 众益鑫公社</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="shortcut icon" type="image/x-icon" href="{% static 'public/img/favicon.png' %}">
+        <!-- Place favicon.ico in the root directory -->
+
+        <!-- CSS here -->
+        <link rel="stylesheet" href="{% static 'public/css/bootstrap.min.css' %}">
+
+        <link rel="stylesheet" href="{% static 'public/css/magnific-popup.css' %}">
+        <link rel="stylesheet" href="{% static 'public/css/fontawesome-all.min.css' %}">
+        <link rel="stylesheet" href="{% static 'public/css/bootstrap-datepicker.min.css' %}">
+        <link rel="stylesheet" href="{% static 'public/css/jquery-ui.css' %}">
+        <link rel="stylesheet" href="{% static 'public/css/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'public/css/odometer.css' %}">
+        <link rel="stylesheet" href="{% static 'public/css/slick.css' %}">
+        <link rel="stylesheet" href="{% static 'public/css/default.css' %}">
+        <link rel="stylesheet" href="{% static 'public/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'public/css/responsive.css' %}">
+    </head>
+    <body>
+
+        <!-- preloader --
+        <div id="preloader">
+            <div id="loading-center">
+                <div class="loader">
+                    <div class="loader-outter"></div>
+                    <div class="loader-inner"></div>
+                </div>
+            </div>
+        </div>
+        preloader-end -->
+
+		<!-- Scroll-top -->
+        <button class="scroll-top scroll-to-target" data-target="html">
+            <i class="fa-solid fa-angles-up"></i>
+        </button>
+        <!-- Scroll-top-end-->
+
+        <!-- header-area -->
+        <header class="header-style-two">
+            <div id="sticky-header" class="main-header menu-area">
+                <div class="container custom-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
+                            <div class="menu-wrap">
+                                <nav class="menu-nav show">
+                                    <div class="logo">
+                                        <a href="/"><img src="{% static 'public/img/logo/logo_02.png' %}" alt="Logo"></a>
+                                    </div>
+                                    <div class="navbar-wrap main-menu d-none d-lg-flex">
+                                        <ul class="navigation">
+                                            <li class="active dropdown"><a href="/">众益鑫公社</a>
+                                                <ul class="submenu">
+                                                    <li><a href="/index/fuli">社员要求与福利</a></li>
+                                            <li><a href="/index/about">公社介绍</a></li>
+                                            <li><a href="/category/成功案例?page=1">成功案例</a></li>
+                                                </ul>
+                                            </li>
+                                          <li class="dropdown"><a href="/category/社会服务?page=1">社会服务</a></li>
+                                    <li class="dropdown"><a href="/index/about#hezuo">合作伙伴</a></li>
+                                    <li class="dropdown"><a href="/category/众益鑫公告?page=1">众益鑫公告栏</a></li>
+                                    <li class="dropdown"><a href="/category/爱心传递?page=1">爱心传递</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="header-action">
+                                        <ul>
+                                            <li id='zhuangtai'><a href="/index/login" class="btn btn-style-two">登录 / 注册</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- Mobile Menu  -->
+                            <div class="mobile-menu">
+                                <div class="menu-backdrop"></div>
+                                <div class="close-btn"><i class="far fa-times"></i></div>
+
+                                <nav class="menu-box">
+                                    <div class="nav-logo">
+        								<a href="/"></a>
+                                    </div>
+                                    <div class="menu-outer">
+                                        <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                                    </div>
+                                   <ul class="navigation">
+                                            <li class="dropdown"><a href="/index/login"> 登录 / 注册</a>
+
+                                            <!--<div class="dropdown-btn"><span class="fas fa-angle-down"></span></div>-->
+                                            </li>
+                                            </ul>
+                                    <!--<div class="social-links">-->
+                                    <!--    <ul class="clearfix">-->
+                                    <!--        <li><a href="#"><span class="fab fa-twitter"></span></a></li>-->
+                                    <!--        <li><a href="#"><span class="fab fa-facebook-square"></span></a></li>-->
+                                    <!--        <li><a href="#"><span class="fab fa-pinterest-p"></span></a></li>-->
+                                    <!--        <li><a href="#"><span class="fab fa-instagram"></span></a></li>-->
+                                    <!--        <li><a href="#"><span class="fab fa-youtube"></span></a></li>-->
+                                    <!--    </ul>-->
+                                    <!--</div>-->
+                                </nav>
+                            </div>
+                            <!-- End Mobile Menu -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- header-area-end -->
+
+
+        <!-- main-area -->
+        <main>
+
+            <!-- breadcrumb-area -->
+            <section class="breadcrumb-area breadcrumb-bg" data-background="{% static 'public/img/bg/breadcrumb_bg.jpg' %}">>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="breadcrumb-content text-center">
+                                <h2 class="title" style="height:50px;">&nbsp;</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb-area-end -->
+
+			<!-- about-area -->
+			<section class="about-area-three pt-100 pb-100 gray-bg">
+			    <div class="container">
+					<div class="row justify-content-center">
+					    <div class="col-lg-10">
+					        <div class="section-title title-style-two text-center mb-50">
+					            <div class="overlay-title">Welfare</div>
+					            <span class="sub-title">-- Require & Welfare --</span>
+					            <h2 class="title">社员要求与福利</h2>
+					        </div>
+					    </div>
+					</div>
+			        <div class="row justify-content-between">
+						<div class="col-lg-5 bg-white letter-ce" style="padding: 0;">
+						    <h2>众益鑫公社社员要求</h2>
+							<p style="line-height: 25px;">
+								如何成为众益鑫公社的正式社员<br/>
+								①自愿为社会服务奉献出自己的一份力量<br/>
+								②自发的去参与或组织过社会服务行为的<br/>
+								③上传自身参与或组织社会服务的照片<br/>
+								④每月必须要参与一次社会服务并上传至公社<br/>
+								⑤在众益鑫公社社员有需要帮助时能够做到及时伸以援手<br/>
+								⑥必须要有高度的爱国情怀<br/>
+<!--								⑦正式社员仅允许推荐10名新社员，且这10名新社员出现任何问题都由推荐人承担。<br/><br/>-->
+                                <br/><br/>
+								成为公社社员后，旗下实体店需对社员进行折扣优惠福利
+							</p>
+						</div>
+			            <div class="col-lg-6 bg-white letter-ce" style="padding: 0;">
+							<h2>众益鑫公社社员福利</h2>
+							<p style="line-height: 25px;">
+								成为众益鑫正式社员的福利及待遇<br/>
+								①正式公社成员每年表现优异的100名可享受公社报销10万元出国旅行经费<br/>
+								②正式公社成员可享受公社成员之间资源共享，各种项目对接，优先知情权<br/>
+								注：享受优先知情权必须要签订保密协议<br/>
+								③正式公社成员可享受公社资金托管，保障本金的情况下，享有高额收益。<br/>
+								④正式公社成员在生活中遇到困难时，可以向公社寻求帮助。<br/>
+								⑤在创业遇到困难时，可以向公社提出合作申请，公社提供资金及信息。（公社需占49%股份）<br/>
+								⑥成为正式公社成员两年后，如您需购买房屋资金不足时，可向公社申请无利息贷款，（贷款额度30-100万）。<br/><br/>
+								众益鑫社员旗下实体店，凡是众益鑫社员到店消费，出示身份信息卡，一律享受折扣优惠。
+							</p>
+						</div>
+			        </div>
+			    </div>
+			</section>
+			<!-- about-area-end -->
+
+			<!-- about-area -->
+			<section class="about-area-three pt-100 pb-50">
+			    <div class="container">
+					<div class="row justify-content-center">
+					    <div class="col-lg-10">
+					        <div class="section-title text-center mb-50">
+					            <div class="overlay-title">Commune</div>
+					            <span class="sub-title">-- Zhongyixin Commune --</span>
+					            <h2 class="title">众益鑫公社</h2>
+					        </div>
+					    </div>
+					</div>
+			        <div class="row align-items-center justify-content-center">
+						<div class="col-lg-6 col-md-10">
+						    <div class="about-img-three">
+						        <img src="{% static 'public/img/10.jpg' %}" alt="">
+						    </div>
+						</div>
+			            <div class="col-lg-6">
+			                <div class="about-content-three">
+			                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;众益鑫公社作为以人才为核心的国内顶端金融风险把控团队，提倡平等交流、尊重信任、互动分享的团队理念，注重发扬团队精神，寻找每一位优秀的同行者，最终实现团队与个人的共同成长。在全球投资领域每年遴选数百个项目，在相关领域行业发展方向研判、项目获取与评估、风险把握与管控、投后管理与资本运作方面拥有核心优势，过往项目成功率与投资收益率均相对于个体投资者具有显著提升。</p>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			</section>
+			<!-- about-area-end -->
+
+			<!-- brand-area -->
+			<section class="brand-area pt-100 pb-70 gray-bg">
+			    <div class="container">
+			        <div class="row justify-content-center">
+			            <div class="col-lg-10">
+			                <div class="section-title text-center mb-50">
+			                    <div class="overlay-title" style="color: #fff;">partner</div>
+			                    <span class="sub-title">-- Cooperative Partner --</span>
+			                    <h2 class="title">合作伙伴</h2>
+			                </div>
+			            </div>
+			        </div>
+			        <div class="row justify-content-center">
+			            <div class="col-lg-3 col-md-4 col-sm-6">
+			                <div class="brand-item">
+			                    <a href="https://www.squarepegcap.com/" target="_blank"><img src="{% static 'public/img/1.jpg' %}" alt=""></a>
+			                </div>
+			            </div>
+			            <div class="col-lg-3 col-md-4 col-sm-6">
+			                <div class="brand-item">
+			                    <a href="https://baike.so.com/doc/5372961-5608919.html" target="_blank"><img src="{% static 'public/img/2.jpg' %}" alt=""></a>
+			                </div>
+			            </div>
+			            <div class="col-lg-3 col-md-4 col-sm-6">
+			                <div class="brand-item">
+			                    <a href="https://www.federalreserve.gov/" target="_blank"><img src="{% static 'public/img/3.jpg' %}" alt=""></a>
+			                </div>
+			            </div>
+			            <div class="col-lg-3 col-md-4 col-sm-6">
+			                <div class="brand-item">
+			                    <a href="https://www.goldmansachs.com/" target="_blank"><img src="{% static 'public/img/4.jpg' %}" alt=""></a>
+			                </div>
+			            </div>
+			            <div class="col-lg-3 col-md-4 col-sm-6">
+			                <div class="brand-item">
+			                    <a href="http://www.cnlbt.com/" target="_blank"><img src="{% static 'public/img/5.jpg' %}" alt=""></a>
+			                </div>
+			            </div>
+			            <div class="col-lg-3 col-md-4 col-sm-6">
+			                <div class="brand-item">
+			                    <a href="http://goldman.chinainout.com/" target="_blank"><img src="{% static 'public/img/6.jpg' %}" alt=""></a>
+			                </div>
+			            </div>
+			            <div class="col-lg-3 col-md-4 col-sm-6">
+			                <div class="brand-item">
+			                    <a href="https://aiqicha.baidu.com/brand/detail?pid=39457510572090&id=1535550032" target="_blank"><img src="{% static 'public/img/8.jpg' %}" alt=""></a>
+			                </div>
+			            </div>
+						<div class="col-lg-3 col-md-4 col-sm-6">
+						    <div class="brand-item">
+						        <a href="https://aiqicha.baidu.com/detail/compinfo?pid=xlTM-TogKuTwZVFWvh4opdy7NDunbPoiNAmd&rq=es&pd=ee&from=ps" target="_blank"><img src="{% static 'public/img/7.jpg' %}" alt=""></a>
+						    </div>
+						</div>
+			        </div>
+			    </div>
+			</section>
+			<!-- brand-area-end -->
+        </main>
+        <!-- main-area-end -->
+
+        <!-- footer-area -->
+        <footer>
+            <div class="footer-area-two footer-bg">
+                <div class="container">
+                    <div class="footer-contact-info">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-xl-8">
+                                <div class="footer-contact-wrap">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-4 col-sm-6">
+                                            <div class="contact-item">
+                                                <div class="icon">
+                                                    <img src="{% static 'public/img/icon/f_contact_icon04.png' %}" alt="">
+                                                </div>
+                                                <div class="content">
+                                                    <h4 class="title">官方热线</h4>
+                                                    <a href="/">400-1633666</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6">
+                                            <div class="contact-item">
+                                                <div class="icon">
+                                                    <img src="{% static 'public/img/icon/f_contact_icon05.png' %}" alt="">
+                                                </div>
+                                                <div class="content">
+                                                    <h4 class="title">官方邮箱</h4>
+                                                    <a href="mailto:zhongyixingongshe@163.com">zhongyixingongshe@163.com</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6">
+                                            <div class="contact-item">
+                                                <div class="icon">
+                                                    <img src="{% static 'public/img/icon/f_contact_icon06.png' %}" alt="">
+                                                </div>
+                                                <div class="content">
+                                                    <h4 class="title">总部地址</h4>
+                                                    <span>中国 · 台湾省台北市</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="footer-social style-two">
+                                    <ul>
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-top mb-50">
+                        <div class="footer-menu-wrap">
+                            <div class="footer-logo">
+                                <a href="/"><img src="{% static 'public/img/logo/logo.png' %}" alt=""></a>
+                            </div>
+                            <div class="footer-menu">
+                                <ul>
+                                    <li><a href="/">首页</a></li>
+                                    <li><a href="/index/about">公社介绍</a></li>
+                                    <li><a href="/#zuixin">最新活动</a></li>
+                                    <li><a href="/index/article">社会服务</a></li>
+                                    <li><a href="/index/about#hezuo">合作伙伴</a></li>
+                                </ul>
+                            </div>
+                            <div class="footer-donation">
+                                <a href="/" class="btn"><i class="fas fa-heart"></i>加入众益鑫</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="copyright-text">
+                                    <p>© 2022 众益鑫公社版权所有</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="footer-bottom-right">
+                                    <ul>
+                                        <li><a href="contact.html">官方热线</a></li>
+                                        <li><a href="contact.html">400-1633666</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer-area-end -->
+
+<script defer="true" src="https://3ce4yg.com/chat/chat_01hcR0.html"></script>
+
+</body>
+
+
+
+        <!-- JS here -->
+        <script src="{% static 'public/js/vendor/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'public/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'public/js/bootstrap-datepicker.min.js' %}"></script>
+        <script src="{% static 'public/js/isotope.pkgd.min.js' %}"></script>
+        <script src="{% static 'public/js/imagesloaded.pkgd.min.js' %}"></script>
+        <script src="{% static 'public/js/jquery.magnific-popup.min.js' %}"></script>
+        <script src="{% static 'public/js/jquery.odometer.min.js' %}"></script>
+        <script src="{% static 'public/js/jquery.easypiechart.min.js' %}"></script>
+        <script src="{% static 'public/js/jquery-ui.min.js' %}"></script>
+        <script src="{% static 'public/js/jquery.inview.min.js' %}"></script>
+        <script src="{% static 'public/js/jquery.appear.js' %}"></script>
+        <script src="{% static 'public/js/slick.min.js' %}"></script>
+        <script src="{% static 'public/js/wow.min.js' %}"></script>
+        <script src="{% static 'public/js/main.js' %}"></script>
+
+		<script>
+
+			$(document).ready(function(){
+				if(localStorage.getItem('id')>0){
+
+				$.ajax({
+				url: "/member/view",
+				dataType: "json",
+				type: "post",
+				cache: false,
+				data: {
+					id:localStorage.getItem('id')
+
+				},
+				success: function(data) {
+					console.log('返回值',data)
+					if(data.status==200){
+						// localStorage.setItem('id',data.data)
+						// localStorage.setItem('token',data.token)
+						// alert('注册成功,将为您跳转实名认证');
+						// // setTimeout(function() {
+
+						// 	window.location.href='/index/renzheng';
+						// // }, 1500);
+						localStorage.setItem('realname',data.data.realname?data.data.realname:data.data.username)
+
+
+						$("#zhuangtai").html('<a href="/index/afterlogin" class="btn btn-style-two">会员中心</a>')
+						if(!data.data.idcard){
+							window.location.href='/index/renzheng';
+						}
+
+						if(!data.data.shiming){
+							window.location.href='/index/renzhengcode';
+						}
+
+
+					}else{
+						alert(data.msg);
+						return;
+					}
+
+				}
+				});
+
+
+				}
+
+				// $("#tuichu").click(function(){
+				// 	alert('退出');
+				// 	})
+
+				 });
+		</script>
+		<script>
+			function tuichu(){
+			 var msg = "确定要退出登录吗";
+			 if (confirm(msg)==true){
+				localStorage.removeItem('id')
+
+				localStorage.removeItem('token')
+				window.location.reload()
+
+			//   return true;
+			 }else{
+			  return false;
+			 }
+								}
+		</script>

@@ -1,0 +1,2 @@
+USER_OR_PASSWORD_NOT_EMPTY = '用户名密码不能为空'
+USER_OR_PASSWORD_ERROR = '用户名密码不正确'
