@@ -70,14 +70,18 @@ for item in df.values:
     #            get_approval(item[8]), datetime.strptime(item[7], '%Y-%m-%d %H:%M:%S'), item[8], 10,
     #            download_and_save_file(item)
     #            )
-
+    file_id = 'null'
+    try:
+        file_id = download_and_save_file(item)
+    except Exception as e:
+        print('图片错误')
     search_sql = f"select * from blog_nuser where phone_number = '{item[1]}'"
     fetchall = cursor.execute(search_sql).fetchall()
     if len(fetchall) == 0:
         sql = f"insert into blog_nuser (id, phone_number,password, real_name, identity_number, invitation_code, create_time, " \
               f"approval_status, approval_time, reject_reason, max_invitation_number, identity_photo_id ,status) " \
               f"values ({item[0]},'{item[1]}','123456','{item[2]}','{item[3]}','{item[5]}','{datetime.strptime(item[6], '%Y-%m-%d %H:%M:%S')}'," \
-              f"'{get_approval(item[8])}','{datetime.strptime(item[7], '%Y-%m-%d %H:%M:%S')}','{item[8]}',10,{download_and_save_file(item)},1)"
+              f"'{get_approval(item[8])}','{datetime.strptime(item[7], '%Y-%m-%d %H:%M:%S')}','{item[8]}',10,{file_id},1)"
 
         print(sql)
 
